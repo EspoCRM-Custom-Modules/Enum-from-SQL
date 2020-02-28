@@ -1,36 +1,43 @@
 # Enum-from-SQL-Field-for-EspoCRM
 Enum type field that can be populated by custom SQL statements specified in metadata 
 
-Usage instructions:
+For usage instructions follow the example below:
 
-Go to Administration >> Entity Manager and select your target Entity (eg: "MyEntity"), then click the Fields link.
-Click "Add Field" and select "Enum from SQL".
-Clear cache and rebuild.
+# Example Assumptions:
 
-To specify the SQL statement and optional placeholders go to "MyEntity" entityDefs JSON file and follow the example below: 
+- We have a "WorkOrder" entity that has a not storable field "serviceCategory" and a regular (storable) field called "serviceTask".
 
-"MyEntity" includes two select (enum) elements, one called "entityType" and the second one called "entitySubType". 
+- We also have two other entities: "ServiceCategory" and "ServiceTask". "ServiceCategory" is linked to "ServiceTask" in a One-to-Many relationship.
 
-Enum "entityType" contains a list of all entities defined in Espo and those entities might have a field called "type".
+- "WorkOrder" is linked to "ServiceTask" in a One-to-Many relationship.
 
-When an entity is chosen from "entityType", enum "entitySubType" will be populated with the various values (if any) of the field "type" found in all existing records of the entity selected as "entityType"
+- When we create or update a WorkOrder we want to have a dropdown element (select1) that displays all values for "serviceCategoy" (for example "Plumbing") and depending on this choice, another dropdown (select2) will display all values for "serviceTask" that belong to the selected "servicecategory" (for example "Fix leaky faucet").
 
-When a user selects a different entity in Enum "entityType", "entitySubType" will be re-populated accordingly.
+- The values for "serviceCategory" are stored as a collection of "ServiceCastegory" records, and the values for "serviceTask" are stored as a collection of "ServiceTask" records.
 
-Place holders "@@{{"  and "}}/@@" are used to dynamically define a field.
+- The values displayed for both "serviceCategory" and "serviceTask" correspond to the "name" field on each entity, so in our example "Plumbing" is the name of the selected "ServiceCategory" record and "Fix leaky faucet" is the name of the selected "ServiceTask" record.
 
+# Example Steps:
 
-    "fields": {
+1. Dowload and install this extension, then clear cache and rebuild.
+
+1. Go to Administration >> Entity Manager >> WorkOrder >> Fields and click "Add Field", select "Enum from SQL".
+
+2. Edit file custom/Custom/Espo/Resources/metadata/entityDefs/WorkOrder.json as follows:
+
+```"fields": {
 
        "entityType": {
 
-       "type": "enum",
+         "type": "enum-from-sql",
 	 
-       "required": true,
+         "required": true,
 	 
-       "translation": "Global.scopeNames",
+         "options": [],
+       
+         "isCustom": true,
 	 
-       "view": "views/fields/entity-type"
+         "selectSQL": "Select name AS value FROM service_category ORDER by name"
 	 
        },
    
@@ -44,14 +51,16 @@ Place holders "@@{{"  and "}}/@@" are used to dynamically define a field.
 			
           "isCustom": true,
 			
-          "selectSQL": "SELECT type AS value FROM @@{{entityType}}/@@ GROUP BY type",
+          "selectSQL": "SELECT name AS value FROM service_task WHERE service_task.service_category_id = @@{{serviceCategory}}/@@ ORDER BY name",
 			
           "placeholders":{
 			
-              "entityType":"model.attributes.entityType"
+              "serviceCategory":"model.attributes.serviceCategory"
 				 
            }
 			 
        }  
 	 
     }   
+
+3. Clear cache and rebuild.
