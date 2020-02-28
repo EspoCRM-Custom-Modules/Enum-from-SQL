@@ -62,5 +62,5 @@ For usage instructions follow the example below:
        }  
 	 
     }   
-
+```
 3. Clear cache and rebuild.
