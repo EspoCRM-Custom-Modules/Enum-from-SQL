@@ -51,11 +51,11 @@ For usage instructions follow the example below:
 			
           "isCustom": true,
 			
-          "selectSQL": "SELECT name AS value FROM service_task WHERE service_task.service_category_id = @@{{serviceCategory}}/@@ ORDER BY name",
+          "selectSQL": "SELECT name AS value FROM service_task WHERE service_task.service_category_id = @@{{serviceCategoryValue}}/@@ ORDER BY name",
 			
           "placeholders":{
 			
-              "serviceCategory":"model.attributes.serviceCategory"
+              "serviceCategoryValue":"model.attributes.serviceCategory"
 				 
            }
 			 
