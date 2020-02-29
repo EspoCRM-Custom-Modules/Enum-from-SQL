@@ -7,11 +7,11 @@ For usage instructions follow the example below:
 
 - We have a "WorkOrder" entity that has a not storable field "serviceCategory" and a regular (storable) field called "serviceTask".
 
-- We also have two other entities: "ServiceCategory" and "ServiceTask". "ServiceCategory" is linked to "ServiceTask" in a One-to-Many relationship.
+- We also have two other entities: "ServiceCategory" and "ServiceTask". "ServiceCategory" is linked to "ServiceTask" in a One-to-Many relationship. (One ServiceCategory can have many Servicetasks).
 
 - "WorkOrder" is linked to "ServiceTask" in a One-to-Many relationship.
 
-- When we create or update a WorkOrder we want to have a dropdown element (select1) that displays all values for "serviceCategoy" (for example "Plumbing") and depending on this choice, another dropdown (select2) will display all values for "serviceTask" that belong to the selected "servicecategory" (for example "Fix leaky faucet").
+- When we create or update a WorkOrder we want to have a dropdown element (select1) that displays all values for "serviceCategoy" (for example "Plumbing") and depending on this choice, another dropdown (select2) will display all values for "serviceTask" that belong to the "serviceCategory" selected. (For example "Fix leaky faucet").
 
 - The values for "serviceCategory" are stored as a collection of "ServiceCastegory" records, and the values for "serviceTask" are stored as a collection of "ServiceTask" records.
 
