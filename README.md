@@ -7,7 +7,7 @@ For usage instructions follow the example below:
 
 - We have a "WorkOrder" entity that has a not storable field "serviceCategory" and a regular (storable) field called "serviceTask".
 
-- We also have two other entities: "ServiceCategory" and "ServiceTask". "ServiceCategory" is linked to "ServiceTask" in a One-to-Many relationship. (One ServiceCategory can have many Servicetasks).
+- We also have two other entities: "ServiceCategory" and "ServiceTask". "ServiceCategory" is linked to "ServiceTask" in a One-to-Many relationship. (One ServiceCategory can have many ServiceTasks).
 
 - "WorkOrder" is linked to "ServiceTask" in a One-to-Many relationship.
 
