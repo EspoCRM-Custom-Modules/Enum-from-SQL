@@ -9,7 +9,7 @@ For usage instructions follow the example below:
 
 - We also have two other entities: "ServiceCategory" and "ServiceTask". "ServiceCategory" is linked to "ServiceTask" in a One-to-Many relationship. (One ServiceCategory can have many ServiceTasks).
 
-- "WorkOrder" is linked to "ServiceTask" in a One-to-Many relationship.
+- "WorkOrder" is linked to "ServiceTask" in a One-to-Many relationship. (One WorkOrder can have many ServiceTasks).
 
 - When we create or update a WorkOrder we want to have a dropdown element (select1) that displays all values for "serviceCategoy" (for example "Plumbing") and depending on this choice, another dropdown (select2) will display all values for "serviceTask" that belong to the "serviceCategory" selected. (For example "Fix leaky faucet").
 
