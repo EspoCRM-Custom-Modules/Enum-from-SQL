@@ -19,7 +19,7 @@ For usage instructions follow the example below:
 
 # Example Steps:
 
-1. Dowload and install this extension, then clear cache and rebuild.
+1. Dowload the compressed folder (zip) and install this extension, then clear cache and rebuild.
 
 1. Go to Administration >> Entity Manager >> WorkOrder >> Fields and click "Add Field", select "Enum from SQL".
 
