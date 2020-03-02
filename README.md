@@ -5,13 +5,13 @@ For usage instructions follow the example below:
 
 # Example Assumptions:
 
-- We have a "WorkOrder" entity that has a not storable field "serviceCategory" and a regular (storable) field called "serviceTask".
+- We have a "WorkOrder" entity that is linked to a "ServiceTask" entity in a One-to-Many relationship. (One WorkOrder can have many ServiceTasks).
 
-- We also have two other entities: "ServiceCategory" and "ServiceTask" linked in a One-to-Many relationship. (One ServiceCategory can have many ServiceTasks).
+- The "ServiceTask" entity is itself linked to a "ServiceCategory" entity in a Many-to-One relationship. (One ServiceCategory can have many ServiceTasks)
 
-- "WorkOrder" is also linked to "ServiceTask" in a One-to-Many relationship. (One WorkOrder can have many ServiceTasks).
+- When we create or update a WorkOrder we want to have a dropdown element (select1) that displays first all possible values for "serviceCategoy" (for example "Plumbing") and depending on this choice, there is another dropdown (select2) that will display all values for "serviceTask" that belong to the "serviceCategory" selected. (For example "Fix leaky faucet").
 
-- When we create or update a WorkOrder we want to have a dropdown element (select1) that displays all values for "serviceCategoy" (for example "Plumbing") and depending on this choice, another dropdown (select2) will display all values for "serviceTask" that belong to the "serviceCategory" selected. (For example "Fix leaky faucet").
+- Since it would be redundant to store the ServiceCategory for each ServiceTask entity that is linked to a WorkOrder, we define the "serviceCategory" field in the WorkOrder as notStorable so we can manipulate it in the client side but will not create a field in the work_order (WorkOrder) db table.
 
 - The values for "serviceCategory" are stored as a collection of "ServiceCastegory" records, and the values for "serviceTask" are stored as a collection of "ServiceTask" records.
 
